@@ -6,4 +6,8 @@ import com.ecommerce_Blossom.ecomerce.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+	Usuario findByemail(String email);
+
+	Usuario findByUsername(String username);
+
 }

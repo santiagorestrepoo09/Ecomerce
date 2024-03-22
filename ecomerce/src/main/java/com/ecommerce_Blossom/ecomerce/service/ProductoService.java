@@ -47,6 +47,21 @@ public class ProductoService implements ProductosRepository {
 		productosRepository.deleteById(id);
 	}
 	
+	public Optional<Productos> buscarPorId(Integer id) {
+       return productosRepository.findById(id);
+   }
+	
+	public List<Productos> buscarPorNombre(String nombre) {
+		return productosRepository.findByNombre(nombre);
+	}
+	
+	public List<Productos> buscarPorRangoDePrecio(Double precioMin, Double precioMax) {
+        return productosRepository.findByPrecioBetween(precioMin, precioMax);
+    }
+	
+	public List<Productos> buscarPorCategoria(String categoria) {
+        return productosRepository.findByCategoria(categoria);
+    }
 	
 	@Override
 	public void flush() {
@@ -126,11 +141,7 @@ public class ProductoService implements ProductosRepository {
 		return null;
 	}
 
-	@Override
-	public Optional<Productos> findById(Integer id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
+	
 
 	@Override
 	public boolean existsById(Integer id) {
@@ -204,6 +215,32 @@ public class ProductoService implements ProductosRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Optional<Productos> findById(Integer id) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
+	@Override
+	public List<Productos> findByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Productos> findByPrecioBetween(Double precioMin, Double precioMax) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Productos> findByCategoria(String categoria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 		
 	

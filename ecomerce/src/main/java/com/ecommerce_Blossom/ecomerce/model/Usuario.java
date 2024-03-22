@@ -22,14 +22,15 @@ public class Usuario {
 	private String apellido;
 	private String email;
 	private java.time.LocalDate fecha_registro;
+	private String username;
 	private String contraseña;
 	
 	public Usuario() {
 		
 	}
-	
+
 	public Usuario(Long id, int cedula, String nombre, String apellido, String email, LocalDate fecha_registro,
-			String contraseña) {
+			String username, String contraseña) {
 		super();
 		this.id = id;
 		this.cedula = cedula;
@@ -37,17 +38,16 @@ public class Usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.fecha_registro = fecha_registro;
+		this.username = username;
 		this.contraseña = contraseña;
 	}
-
-
 
 	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = (long) id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public int getCedula() {
@@ -90,6 +90,14 @@ public class Usuario {
 		this.fecha_registro = fecha_registro;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public String getContraseña() {
 		return contraseña;
 	}
@@ -97,7 +105,7 @@ public class Usuario {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
-
+	
 	
 	
 }

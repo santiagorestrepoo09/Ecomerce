@@ -13,34 +13,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce_Blossom.ecomerce.model.Productos;
 import com.ecommerce_Blossom.ecomerce.service.ProductoService;
 
-import jakarta.websocket.server.PathParam;
-
 @RestController
 @RequestMapping ("/productos")
 public class ProductosRest {
 
-	
 	@Autowired
 	private ProductoService productoService;
-	
 		
 	@GetMapping
 	private ResponseEntity<List<Productos>> getAllProductos () {
 		List<Productos>  Productos = productoService.findAll();
 		return ResponseEntity.ok(Productos);
 	}
-	
-	@GetMapping("/{}/")
-	private ResponseEntity<Optional<Productos>> infoProductos(@PathParam("id") Integer id){
-		return ResponseEntity.ok(productoService.findById(id));
-	}
-	
-	
+		
+	 @GetMapping("/buscar/{id}")
+    public Productos obtenerUsuarioPorId(@PathVariable Integer id) {
+        Optional<Productos> ProductosOptional = productoService.buscarPorId(id);
+        return ProductosOptional.orElse(null); 
+    }
+	 
+	@GetMapping("/buscar/nombre")
+    public List<Productos> buscarProductossPorNombre(@RequestParam String nombre) {
+        return productoService.buscarPorNombre(nombre);
+    }
+	 
 	@PostMapping("/editar/")
 	private ResponseEntity<?> update (@RequestBody Productos productos){
 		try {
@@ -50,6 +52,18 @@ public class ProductosRest {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	
+	@GetMapping("/buscar/precio")
+    public List<Productos> buscarPorRangoDePrecio(
+            @RequestParam(name = "precioMin") Double precioMin,
+            @RequestParam(name = "precioMax") Double precioMax) {
+        return productoService.buscarPorRangoDePrecio(precioMin, precioMax);
+    }
+	
+	@GetMapping("/buscar/categoria")
+    public List<Productos> buscarPorCategoria(@RequestParam(name = "categoria") String categoria) {
+        return productoService.buscarPorCategoria(categoria);
+    }
 	
 	@PostMapping("/nuevo/")
 	private ResponseEntity<?> save (@RequestBody Productos productos){

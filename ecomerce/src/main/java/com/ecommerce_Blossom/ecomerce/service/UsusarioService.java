@@ -1,3 +1,4 @@
+
 package com.ecommerce_Blossom.ecomerce.service;
 
 import java.util.List;
@@ -39,16 +40,32 @@ public class UsusarioService implements UsuarioRepository {
 		return usuarioRepository.save(entity);
 	}
 	
-	 public void eliminarUsuarioPorId(Integer id) {
+	public void eliminarUsuarioPorId(Integer id) {
 	        usuarioRepository.deleteById(id);
 	    }
+	 
+	public Usuario buscarPorNombreDeUsuario(String email) {
+		return usuarioRepository.findByemail(email);
+	}
 
+	
+	public boolean autenticar(String username, String contraseña) {
+        Usuario usuario = usuarioRepository.findByUsername(username);
+        return usuario != null && usuario.getContraseña().equals(contraseña);
+    }
 	//--------------------------------------
 
 	public void delete(Usuario entity) {
 		usuarioRepository.delete(entity);
 	}
 
+	
+	@Override
+	public Usuario findByemail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
@@ -195,5 +212,13 @@ public class UsusarioService implements UsuarioRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Usuario findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 }

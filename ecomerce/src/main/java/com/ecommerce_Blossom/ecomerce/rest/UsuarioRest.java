@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce_Blossom.ecomerce.model.Productos;
 import com.ecommerce_Blossom.ecomerce.model.Usuario;
 import com.ecommerce_Blossom.ecomerce.service.UsusarioService;
 
@@ -48,6 +50,18 @@ public class UsuarioRest {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	
+	
+	@PostMapping("/login")
+    public String login(@RequestBody Usuario usuario) {
+        if (usuarioService.autenticar(usuario.getUsername(), usuario.getContraseña())) {
+            return "Inicio de sesión exitoso";
+        } else {
+            return "Nombre de usuario o contraseña incorrectos";
+        }
+    }
+	
+	
 	
 	@PostMapping("/nuevo/")
 	private ResponseEntity<?> save (@RequestBody Usuario usuario){
