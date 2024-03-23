@@ -32,7 +32,6 @@ public class Usuario {
 	public Usuario(Long id, int cedula, String nombre, String apellido, String email, LocalDate fecha_registro,
 			String username, String contraseña) {
 		super();
-		this.id = id;
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.apellido = apellido;
