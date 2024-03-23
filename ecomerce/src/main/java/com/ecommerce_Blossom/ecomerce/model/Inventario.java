@@ -20,41 +20,51 @@ public class Inventario {
 	private int cantidad;
 	
 	@ManyToOne
-	@JoinColumn(name = "producto_id")
-	private Productos producto_id;
+	@JoinColumn(name = "id_producto")
+	private Productos producto;
 	
 
 	public Inventario() {
 	}
-	
-	public Inventario(int cantidad, Productos producto_id) {
+
+
+	public Inventario(int id, int cantidad, Productos producto) {
 		super();
+		this.id = id;
 		this.cantidad = cantidad;
-		this.producto_id = producto_id;
+		this.producto = producto;
 	}
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public int getCantidad() {
 		return cantidad;
 	}
 
+
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
 
-	public Productos getProducto_id() {
-		return producto_id;
+
+	public Productos getProducto() {
+		return producto;
 	}
 
-	public void setProducto_id(Productos producto_id) {
-		this.producto_id = producto_id;
+
+	public void setProducto(Productos producto) {
+		this.producto = producto;
 	}
+	
+	
 	
 }

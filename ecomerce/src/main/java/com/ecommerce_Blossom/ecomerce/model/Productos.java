@@ -16,18 +16,17 @@ public class Productos {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productos_id_seq")
-	private Long  id;
+	private int id;
 	private String nombre;
 	private java.time.LocalDate fecha_registro;
 	private String descripcion;
-	private int precio;
+	private double  precio;
 	private String categoria;
 	
 	public Productos() {
 	}
-	
-	
-	public Productos(Long id, String nombre, LocalDate fecha_registro, String descripcion, int precio,
+
+	public Productos(int id, String nombre, LocalDate fecha_registro, String descripcion, double precio,
 			String categoria) {
 		super();
 		this.id = id;
@@ -38,43 +37,54 @@ public class Productos {
 		this.categoria = categoria;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
-		this.id = (long) id;
+		this.id = id;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public java.time.LocalDate getFecharegistro() {
+
+	public java.time.LocalDate getFecha_registro() {
 		return fecha_registro;
 	}
-	public void setFecharegistro(java.time.LocalDate fecharegistro) {
-		this.fecha_registro = fecharegistro;
+
+	public void setFecha_registro(java.time.LocalDate fecha_registro) {
+		this.fecha_registro = fecha_registro;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public int getPrecio() {
+
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(int precio) {
+
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+
 	public String getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	
 	
 	

@@ -73,6 +73,12 @@ public class UsuarioRest {
 		}
 	}
 	
+	@PostMapping("/guardarUsuarios")
+    public ResponseEntity<String> guardarUsuarios(@RequestBody List<Usuario> usuarios) {
+        usuarioService.guardarUsuarios(usuarios);
+        return ResponseEntity.ok("Usuarios guardados exitosamente");
+    }
+	
 	@DeleteMapping("/delete/{id}")
     public void eliminarUsuario(@PathVariable Integer id) {
 		System.out.println("llege a borrar a = " + id);

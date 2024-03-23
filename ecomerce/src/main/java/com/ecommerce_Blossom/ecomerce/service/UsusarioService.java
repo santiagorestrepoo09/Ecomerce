@@ -40,9 +40,13 @@ public class UsusarioService implements UsuarioRepository {
 		return usuarioRepository.save(entity);
 	}
 	
+	public void guardarUsuarios(List<Usuario> Usuario) {
+		usuarioRepository.saveAll(Usuario);
+    }
+	
 	public void eliminarUsuarioPorId(Integer id) {
-	        usuarioRepository.deleteById(id);
-	    }
+		usuarioRepository.deleteById(id);
+	}
 	 
 	public Usuario buscarPorNombreDeUsuario(String email) {
 		return usuarioRepository.findByemail(email);

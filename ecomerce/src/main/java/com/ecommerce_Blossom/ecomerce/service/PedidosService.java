@@ -21,28 +21,38 @@ public class PedidosService implements PedidoRepository {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
-	/**
-	 * Gets all products.
-	 *
-	 * @return all products
-	 */
-	
+		
 	@Override
 	public List<Pedidos> findAll() {
 		return pedidoRepository.findAll();
 	}
 	
+	public Optional<Pedidos> buscarPorId(Integer id) {
+		return pedidoRepository.findById(id);
+	}
+	
+	public List<Pedidos> obtenerHistorialPedidosUsuario(Long idUsuario) {
+	    return pedidoRepository.findByUsuarioId(idUsuario);
+	}
+	
+	 public Pedidos guardarPedido(Pedidos pedido) {
+	        return pedidoRepository.save(pedido);
+	    }
+	
+	public void guardarPedidos(List<Pedidos> pedidos) {
+        pedidoRepository.saveAll(pedidos);
+    }
+		
+	//-------------------------------
 	@Override
 	public Optional<Pedidos> findById(Integer id) {
 		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
-
 	
 	@Override
 	public void flush() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -209,5 +219,20 @@ public class PedidosService implements PedidoRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	public List<Pedidos> buscarPorClienteNombre1(String cliente_nombre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Pedidos> findByUsuarioId(Long usuarioId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 }

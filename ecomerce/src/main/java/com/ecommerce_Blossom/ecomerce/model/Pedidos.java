@@ -8,103 +8,104 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table( name = "pedidos")
+@SequenceGenerator(name = "pedidos_id_seq", sequenceName = "pedidos_id_seq", allocationSize = 1)
 public class Pedidos {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pedidos_id_seq")
+	private Integer id;
 	private java.time.LocalDate fecha;
-	private String cliente_nombre;
 	private String estado;
-	private int cantidad;
-	private int precio_unitario;
+	private Integer cantidad;
+	private Integer precio_unitario;
+	
 	@ManyToOne
-	
 	@JoinColumn(name = "producto_id")
-	private Productos producto_id;
+	private Productos producto;
+	@ManyToOne
+	@JoinColumn(name = "usuarios_id")
+	private Usuario usuario;
 
-	
 	public Pedidos() {
 	}
 
-
-	public Pedidos(int id, LocalDate fecha, String cliente_nombre, String estado, int cantidad, int precio_unitario,
-			Productos producto_id) {
+	public Pedidos(Integer id, LocalDate fecha, String estado, Integer cantidad, Integer precio_unitario,
+			Productos producto, Usuario usuario) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
-		this.cliente_nombre = cliente_nombre;
 		this.estado = estado;
 		this.cantidad = cantidad;
 		this.precio_unitario = precio_unitario;
-		this.producto_id = producto_id;
+		this.producto = producto;
+		this.usuario = usuario;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public java.time.LocalDate getFecha() {
 		return fecha;
 	}
 
-
 	public void setFecha(java.time.LocalDate fecha) {
 		this.fecha = fecha;
 	}
-
-
-	public String getCliente_nombre() {
-		return cliente_nombre;
-	}
-
-
-	public void setCliente_nombre(String cliente_nombre) {
-		this.cliente_nombre = cliente_nombre;
-	}
-
 
 	public String getEstado() {
 		return estado;
 	}
 
-
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-
-	public int getCantidad() {
+	public Integer getCantidad() {
 		return cantidad;
 	}
 
-
-	public void setCantidad(int cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 
-
-	public int getPrecio_unitario() {
+	public Integer getPrecio_unitario() {
 		return precio_unitario;
 	}
 
-
-	public void setPrecio_unitario(int precio_unitario) {
+	public void setPrecio_unitario(Integer precio_unitario) {
 		this.precio_unitario = precio_unitario;
 	}
 
-
-	public Productos getProducto_id() {
-		return producto_id;
+	public Productos getProducto() {
+		return producto;
 	}
 
-
-	public void setProducto_id(Productos producto_id) {
-		this.producto_id = producto_id;
+	public void setProducto(Productos producto) {
+		this.producto = producto;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	
-	
+
+
+
 	
 	
 }
